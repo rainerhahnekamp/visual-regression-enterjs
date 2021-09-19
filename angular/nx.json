@@ -1,0 +1,56 @@
+{
+  "npmScope": "nx-testing",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e", "build-storybook"]
+      }
+    }
+  },
+  "projects": {
+    "eternal": {
+      "tags": []
+    },
+    "eternal-e2e": {
+      "tags": [],
+      "implicitDependencies": ["eternal"]
+    },
+    "holidays-data": {
+      "tags": ["domain:holidays", "type:data"]
+    },
+    "holidays-feature": {
+      "tags": ["domain:holidays", "type:feature"]
+    },
+    "holidays-model": {
+      "tags": ["domain:holidays", "type:model"]
+    },
+    "holidays-ui": {
+      "tags": ["domain:holidays", "type:ui"]
+    },
+    "shared-address-getter": {
+      "tags": []
+    },
+    "shared-util": {
+      "tags": []
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@eternal/holidays/data": ["libs/holidays/data/src/index.ts"],
+      "@eternal/holidays/feature": ["libs/holidays/feature/src/index.ts"],
+      "@eternal/holidays/model": ["libs/holidays/model/src/index.ts"],
+      "@eternal/holidays/ui": ["libs/holidays/ui/src/index.ts"],
+      "@eternal/shared/address-getter": ["libs/shared/address-getter/src/index.ts"],
+      "@eternal/shared/util": ["libs/shared/util/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

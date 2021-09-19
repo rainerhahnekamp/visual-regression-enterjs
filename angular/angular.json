@@ -1,0 +1,347 @@
+{
+  "version": 1,
+  "projects": {
+    "eternal": {
+      "projectType": "application",
+      "root": "apps/eternal",
+      "sourceRoot": "apps/eternal/src",
+      "prefix": "nx-testing",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/eternal",
+            "index": "apps/eternal/src/index.html",
+            "main": "apps/eternal/src/main.ts",
+            "polyfills": "apps/eternal/src/polyfills.ts",
+            "tsConfig": "apps/eternal/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": ["apps/eternal/src/favicon.ico", "apps/eternal/src/assets"],
+            "styles": ["apps/eternal/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "dev-local": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/eternal/src/environments/environment.ts",
+                  "with": "apps/eternal/src/environments/environment.dev-local.ts"
+                }
+              ]
+            },
+            "non-mock": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/eternal/src/environments/environment.ts",
+                  "with": "apps/eternal/src/environments/environment.non-mock.ts"
+                }
+              ]
+            },
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/eternal/src/environments/environment.ts",
+                  "with": "apps/eternal/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "eternal:build:production"
+            },
+            "development": {
+              "browserTarget": "eternal:build:development"
+            },
+            "non-mock": {
+              "browserTarget": "eternal:build:non-mock"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "eternal:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/eternal/src/**/*.ts", "apps/eternal/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/eternal"],
+          "options": {
+            "jestConfig": "apps/eternal/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "apps/eternal/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/eternal",
+            "config": {
+              "configFolder": "apps/eternal/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "eternal-e2e": {
+      "root": "apps/eternal-e2e",
+      "sourceRoot": "apps/eternal-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/eternal-e2e/cypress.json",
+            "tsConfig": "apps/eternal-e2e/tsconfig.e2e.json",
+            "devServerTarget": "eternal:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "eternal:serve:production"
+            },
+            "non-mock": {
+              "devServerTarget": "eternal:serve:non-mock"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/eternal-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "holidays-data": {
+      "projectType": "library",
+      "root": "libs/holidays/data",
+      "sourceRoot": "libs/holidays/data/src",
+      "prefix": "nx-testing",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/holidays/data"],
+          "options": {
+            "jestConfig": "libs/holidays/data/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/holidays/data/src/**/*.ts",
+              "libs/holidays/data/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "holidays-feature": {
+      "projectType": "library",
+      "root": "libs/holidays/feature",
+      "sourceRoot": "libs/holidays/feature/src",
+      "prefix": "nx-testing",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/holidays/feature"],
+          "options": {
+            "jestConfig": "libs/holidays/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/holidays/feature/src/**/*.ts",
+              "libs/holidays/feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "holidays-model": {
+      "projectType": "library",
+      "root": "libs/holidays/model",
+      "sourceRoot": "libs/holidays/model/src",
+      "prefix": "nx-testing",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/holidays/model"],
+          "options": {
+            "jestConfig": "libs/holidays/model/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/holidays/model/src/**/*.ts",
+              "libs/holidays/model/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "holidays-ui": {
+      "projectType": "library",
+      "root": "libs/holidays/ui",
+      "sourceRoot": "libs/holidays/ui/src",
+      "prefix": "nx-testing",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/holidays/ui"],
+          "options": {
+            "jestConfig": "libs/holidays/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/holidays/ui/src/**/*.ts", "libs/holidays/ui/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "shared-address-getter": {
+      "projectType": "library",
+      "root": "libs/shared/address-getter",
+      "sourceRoot": "libs/shared/address-getter/src",
+      "prefix": "nx-testing",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/address-getter"],
+          "options": {
+            "jestConfig": "libs/shared/address-getter/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/address-getter/src/**/*.ts",
+              "libs/shared/address-getter/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "shared-util": {
+      "projectType": "library",
+      "root": "libs/shared/util",
+      "sourceRoot": "libs/shared/util/src",
+      "prefix": "nx-testing",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/util"],
+          "options": {
+            "jestConfig": "libs/shared/util/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/util/src/**/*.ts", "libs/shared/util/src/**/*.html"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false,
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "eternal"
+}
