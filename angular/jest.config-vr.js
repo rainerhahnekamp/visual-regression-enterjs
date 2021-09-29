@@ -8,4 +8,6 @@ const config = {
   setupFilesAfterEnv: ['<rootDir>/setup-jest-vr.ts']
 };
 
+console.log(puppeteer_preset);
+
 module.exports = config;

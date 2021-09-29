@@ -1,8 +1,13 @@
 mat-card {
+  mat-card-title {
+    // font-weight: normal;
+  }
   max-width: 305px;
 
   &.sold-out {
-    mat-card-header, figure, mat-card-content {
+    mat-card-header,
+    figure,
+    mat-card-content {
       opacity: 50%;
     }
   }
@@ -23,7 +28,6 @@ mat-card {
       width: 100%;
     }
 
-
     .badge-overlay {
       position: absolute;
       left: 0;
@@ -36,7 +40,7 @@ mat-card {
       -webkit-transition: width 1s ease, height 1s ease;
       -moz-transition: width 1s ease, height 1s ease;
       -o-transition: width 1s ease, height 1s ease;
-      transition: width 0.4s ease, height 0.4s ease
+      transition: width 0.4s ease, height 0.4s ease;
     }
 
     .badge {
@@ -50,7 +54,8 @@ mat-card {
       text-transform: uppercase;
     }
 
-    .badge::before, .badge::after {
+    .badge::before,
+    .badge::after {
       content: '';
       position: absolute;
       top: 0;
@@ -58,15 +63,15 @@ mat-card {
       width: 100%;
       height: 100%;
       background: inherit;
-      min-width: 55px
+      min-width: 55px;
     }
 
     .badge::before {
-      right: 100%
+      right: 100%;
     }
 
     .badge::after {
-      left: 100%
+      left: 100%;
     }
 
     .top-left {

@@ -1,5 +1,12 @@
 [
   {
+    "id": 10,
+    "title": "Darmstadt",
+    "teaser": "Welcome to the Science City",
+    "imageUrl": "/assets/darmstadt.jpg",
+    "description": "Darmstadt calls itself Wissenschaftsstadt or the City of Science. It is a German city, very near to Frankfurt, in the state of Hessen."
+  },
+  {
     "id": 1,
     "title": "Vienna / Wien",
     "teaser": "Dive into the capital of the Habsburg empire",
