@@ -1,7 +1,0 @@
-{
-  "extends": "./tsconfig.json",
-  "include": ["**/*.ts"],
-  "compilerOptions": {
-    "types": ["jest", "node", "jest-environment-puppeteer", "jest-image-snapshot"]
-  }
-}

@@ -18,7 +18,7 @@ export const APP_ROUTES: Routes = [
       },
       {
         path: 'holidays',
-        loadChildren: () => import('@eternal/holidays/feature').then((m) => m.HolidaysFeatureModule)
+        loadChildren: () => import('./holidays/holidays.module').then((m) => m.HolidaysModule)
       }
     ]
   }
